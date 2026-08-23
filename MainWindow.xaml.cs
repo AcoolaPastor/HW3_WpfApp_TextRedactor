@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,11 +49,13 @@ namespace HW3_WpfApp_TextRedactor
             {
                 textBox.FontWeight = FontWeights.Bold;
                 imgBold.Opacity = 0.5;
+                if (menuBold != null) menuBold.IsChecked = true;
             }
             else
             {
                 textBox.FontWeight = FontWeights.Normal;
                 imgBold.Opacity = 1;
+                if (menuBold != null) menuBold.IsChecked = false;
             }
         }
 
@@ -61,11 +65,13 @@ namespace HW3_WpfApp_TextRedactor
             {
                 textBox.FontStyle = FontStyles.Italic;
                 imgItalic.Opacity = 0.5;
+                if (menuItalic != null) menuItalic.IsChecked = true;
             }
             else
             {
                 textBox.FontStyle = FontStyles.Normal;
                 imgItalic.Opacity = 1;
+                if (menuItalic != null) menuItalic.IsChecked = false;
             }
         }
 
@@ -76,11 +82,13 @@ namespace HW3_WpfApp_TextRedactor
             {
                 textBox.TextDecorations.Remove(underline);
                 imgUnderline.Opacity = 1;
+                if (menuUndrln != null) menuUndrln.IsChecked = false;
             }
             else
             {
                 textBox.TextDecorations.Add(underline);
                 imgUnderline.Opacity = 0.5;
+                if (menuUndrln != null) menuUndrln.IsChecked = true;
             }
         }
 
@@ -91,11 +99,13 @@ namespace HW3_WpfApp_TextRedactor
             {
                 textBox.TextDecorations.Remove(strikethrough);
                 imgStrikethrough.Opacity = 1;
+                if (menuStrke != null) menuStrke.IsChecked = false;
             }
             else
             {
                 textBox.TextDecorations.Add(strikethrough);
                 imgStrikethrough.Opacity = 0.5;
+                if (menuStrke != null) menuStrke.IsChecked = true;
             }
         }
 
@@ -114,5 +124,57 @@ namespace HW3_WpfApp_TextRedactor
                 textBox.Foreground = Brushes.Red;
             }
         }
+
+        private void MenuItem_ClickOpen(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                textBox.Text = File.ReadAllText(openFileDialog.FileName);
+            }
+
+        }
+
+        private void MenuItem_ClickSave(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*";
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                File.WriteAllText(saveFileDialog.FileName, textBox.Text);
+            }
+        }
+
+        private void MenuItem_ClickShutdown(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Сохранить перед выходом?","Сохранение" ,MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                MenuItem_ClickSave(null, null);
+            }
+            System.Windows.Application.Current.Shutdown();
+        }
+
+        private void MenuItem_ClickBold(object sender, RoutedEventArgs e)
+        {
+            Button_Click(null, null);
+        }
+
+        private void MenuItem_ClickItalic(object sender, RoutedEventArgs e)
+        {
+            Button_Click_1(null, null);
+        }
+
+        private void MenuItem_ClickUnderlined(object sender, RoutedEventArgs e)
+        {
+            Button_Click_2(null, null);
+        }
+
+        private void MenuItem_ClickStrike(object sender, RoutedEventArgs e)
+        {
+            Button_Click_3(null, null);
+        }
+
     }
 }
