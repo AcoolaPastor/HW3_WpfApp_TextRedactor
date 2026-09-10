@@ -43,7 +43,7 @@ namespace HW3_WpfApp_TextRedactor
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_to_Bold(object sender, RoutedEventArgs e)
         {
             if (textBox.FontWeight == FontWeights.Normal)
             {
@@ -59,7 +59,7 @@ namespace HW3_WpfApp_TextRedactor
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click_to_Itallic(object sender, RoutedEventArgs e)
         {
             if (textBox.FontStyle == FontStyles.Normal)
             {
@@ -75,7 +75,7 @@ namespace HW3_WpfApp_TextRedactor
             }
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Button_Click_to_Uderline(object sender, RoutedEventArgs e)
         {
             var underline = TextDecorations.Underline[0];
             if (textBox.TextDecorations.Contains(underline))
@@ -92,7 +92,7 @@ namespace HW3_WpfApp_TextRedactor
             }
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void Button_Click_to_Strikethrough(object sender, RoutedEventArgs e)
         {
             var strikethrough = TextDecorations.Strikethrough[0];
             if (textBox.TextDecorations.Contains(strikethrough))
@@ -155,26 +155,5 @@ namespace HW3_WpfApp_TextRedactor
             }
             System.Windows.Application.Current.Shutdown();
         }
-
-        private void MenuItem_ClickBold(object sender, RoutedEventArgs e)
-        {
-            Button_Click(null, null);
-        }
-
-        private void MenuItem_ClickItalic(object sender, RoutedEventArgs e)
-        {
-            Button_Click_1(null, null);
-        }
-
-        private void MenuItem_ClickUnderlined(object sender, RoutedEventArgs e)
-        {
-            Button_Click_2(null, null);
-        }
-
-        private void MenuItem_ClickStrike(object sender, RoutedEventArgs e)
-        {
-            Button_Click_3(null, null);
-        }
-
     }
 }

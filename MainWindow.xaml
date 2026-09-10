@@ -6,6 +6,15 @@
         xmlns:local="clr-namespace:HW3_WpfApp_TextRedactor"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.CommandBindings>
+        <CommandBinding Command="Open" Executed="MenuItem_ClickOpen"/>
+        <CommandBinding Command="Save" Executed="MenuItem_ClickSave"/>
+        <CommandBinding Command="Close" Executed="MenuItem_ClickShutdown"/>
+        <CommandBinding Command="local:MyCommands.Bold" Executed="Button_Click_to_Bold"/>
+        <CommandBinding Command="local:MyCommands.Italic" Executed="Button_Click_to_Itallic"/>
+        <CommandBinding Command="local:MyCommands.Underlined" Executed="Button_Click_to_Uderline"/>
+        <CommandBinding Command="local:MyCommands.Strikethrough" Executed="Button_Click_to_Strikethrough"/>
+    </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -15,16 +24,16 @@
 
         <Menu Grid.Row="0" Margin="0" Padding="0">
             <MenuItem Header="_Файл">
-                <MenuItem Header="_Открыть" Click="MenuItem_ClickOpen" />
-                <MenuItem Header="_Сохранить" Click="MenuItem_ClickSave" />
+                <MenuItem Header="_Открыть" Command="ApplicationCommands.Open" />
+                <MenuItem Header="_Сохранить" Command="ApplicationCommands.Save" />
                 <Separator />
-                <MenuItem Header="_Выход" Click="MenuItem_ClickShutdown" />
+                <MenuItem Header="_Выход" Command="ApplicationCommands.Close" />
             </MenuItem>
             <MenuItem Header="_Инструменты">
-                <MenuItem Name="menuBold" Header="Жирный" IsCheckable="True" IsChecked="False" Click="MenuItem_ClickBold" />
-                <MenuItem Name="menuItalic" Header="Курсив" IsCheckable="True" IsChecked="False" Click="MenuItem_ClickItalic"/>
-                <MenuItem Name="menuUndrln" Header="Подчеркнутый" IsCheckable="True" IsChecked="False" Click="MenuItem_ClickUnderlined"/>
-                <MenuItem Name="menuStrke" Header="Зачеркнутый" IsCheckable="True" IsChecked="False" Click="MenuItem_ClickStrike"/>
+                <MenuItem Name="menuBold" Header="Жирный" IsCheckable="True" IsChecked="False" Command="local:MyCommands.Bold"/>
+                <MenuItem Name="menuItalic" Header="Курсив" IsCheckable="True" IsChecked="False" Command="local:MyCommands.Italic"/>
+                <MenuItem Name="menuUndrln" Header="Подчеркнутый" IsCheckable="True" IsChecked="False" Command="local:MyCommands.Underlined"/>
+                <MenuItem Name="menuStrke" Header="Зачеркнутый" IsCheckable="True" IsChecked="False" Command="local:MyCommands.Strikethrough"/>
             </MenuItem>
         </Menu>
 
@@ -43,16 +52,16 @@
                 </ComboBox>
             </ToolBar>
             <ToolBar Margin="5" Padding="5">
-                <Button Click="Button_Click">
+                <Button Command="local:MyCommands.Bold">
                     <Image x:Name="imgBold" Source="/Data/bold.png" Height="45" Opacity="1"/>
                 </Button>
-                <Button Click="Button_Click_1">
+                <Button Click="Button_Click_to_Itallic">
                     <Image x:Name="imgItalic" Source="/Data/italic.png" Height="45" Opacity="1"/>
                 </Button>
-                <Button Click="Button_Click_2">
+                <Button Click="Button_Click_to_Uderline">
                     <Image x:Name="imgUnderline" Source="/Data/underlined.png" Height="45" Opacity="1"/>
                 </Button>
-                <Button Click="Button_Click_3">
+                <Button Click="Button_Click_to_Strikethrough">
                     <Image x:Name="imgStrikethrough" Source="/Data/strikethouht.png" Height="45" Opacity="1"/>
                 </Button>
             </ToolBar>
