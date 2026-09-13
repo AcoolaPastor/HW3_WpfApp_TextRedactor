@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HW3_WpfApp_TextRedactor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="884">
     <Window.CommandBindings>
         <CommandBinding Command="Open" Executed="MenuItem_ClickOpen"/>
         <CommandBinding Command="Save" Executed="MenuItem_ClickSave"/>
@@ -75,6 +75,13 @@
                     <RadioButton Content="Черный" IsChecked="True" Checked="RadioButton_Checked"/>
                     <RadioButton Content="Красный" Click="RadioButton_Click"/>
                 </StackPanel>
+                <ComboBox Name ="Themes"
+                          Width="150"
+                          SelectedIndex="0"
+                          Margin="5" SelectionChanged="Themes_SelectionChanged">
+                    <TextBlock Text="Светлая"/>
+                    <TextBlock Text="Темная"/>
+                </ComboBox>
             </ToolBar>
         </ToolBarTray>
 

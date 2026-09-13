@@ -155,5 +155,13 @@ namespace HW3_WpfApp_TextRedactor
             }
             System.Windows.Application.Current.Shutdown();
         }
+
+        private void Themes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            System.Windows.Application.Current.Resources.MergedDictionaries.Clear();
+            Uri theme = new Uri(Themes.SelectedIndex == 0 ? "LightTheme.xaml" : "DarkTheme.xaml", UriKind.Relative);
+            ResourceDictionary themeDictionary = System.Windows.Application.LoadComponent(theme) as ResourceDictionary;
+            System.Windows.Application.Current.Resources.MergedDictionaries.Add(themeDictionary);
+        }
     }
 }
